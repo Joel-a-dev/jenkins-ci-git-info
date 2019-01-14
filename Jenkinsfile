@@ -11,8 +11,8 @@ def getCommitTimestamp(COMMIT_SHA){
 // end - Auxiliary fuctions
 
 pipeline {
-    agent none
-
+    agent any
+    
     environment {
 
         INIT_GENERATOR_SCRIPT='generate-init-py.sh'
