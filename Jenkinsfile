@@ -17,9 +17,9 @@ pipeline {
     }
 
   stages {
-    stage("Hello") {
+    stage("Test") {
       steps {
-        echo "hello"
+         sh "bash ${INIT_GENERATOR_SCRIPT}"
 
         // Script blocks can run any Groovy script
         script {
