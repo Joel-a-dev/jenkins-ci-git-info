@@ -1,7 +1,7 @@
 #!/bin/bash
 
 # script to generate the api_server/___init___.py file
-# using variables from the jenkins CI
+# using variables set in the jenkins CI job
 
 echo "
 import os

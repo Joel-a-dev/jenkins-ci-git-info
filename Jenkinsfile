@@ -3,10 +3,10 @@
 } */
 
 def getBuildTimestamp(){
-    return sh(returnStdout: true, script: "date -u +'%Y-%m-%dT%H:%M:%SZ'").trim()
+    return sh(returnStdout: true, script: "date -u +'%Y%m%d%H%M%S'").trim()
 }
 
-def getLatestReleaseTag(){
+def getVersion(){
     sh(script: "git fetch --tags")
     return sh(returnStdout: true, script: "git describe --tags --abbrev=0").toString().trim()
 }
@@ -18,7 +18,7 @@ pipeline {
       INIT_GENERATOR_SCRIPT='generate-init-py.sh'
       //GIT_COMMIT_MANUAL = getCommitSha()
       BUILD_TIMESTAMP = getBuildTimestamp()
-      TAGGED_VERSION= getLatestReleaseTag()
+      TAGGED_VERSION= getVersion()
     }
 
   stages {
