@@ -2,7 +2,7 @@
     return sh(returnStdout: true, script: "git rev-parse HEAD").trim()
 } */
 
-def getBuildTimestamp(COMMIT_SHA){
+def getBuildTimestamp(){
     return sh(returnStdout: true, script: "date -u +'%Y-%m-%dT%H:%M:%SZ'").trim()
 }
 
