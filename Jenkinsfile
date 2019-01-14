@@ -25,19 +25,12 @@ pipeline {
         echo "GIT COMMIT ::: ${GIT_COMMIT}"
         echo "::::::::::::::::::::::"
         echo "GIT TIMESTMAP ::: ${GIT_TIMESTAMP}"
-        rcho "::::::::::::::::::::::"
+        echo "::::::::::::::::::::::"
+
+        sh "cat api_server/___init___.py"
       }
       // Post in Stage executes at the end of Stage instead of end of Pipeline
       post {
-        aborted {
-          echo "Stage 'Hello' WAS ABORTED"
-        }
-        always {
-          echo "Stage 'Hello' finished"
-        }
-        changed {
-          echo "Stage HAVE CHANGED"
-        }
         failure {
           echo "Stage FAILED"
         }
