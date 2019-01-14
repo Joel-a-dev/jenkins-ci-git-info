@@ -30,8 +30,7 @@ pipeline {
                 }
             }
         }
-    }
-    
+
     post {
         always {
                 deleteDir()
