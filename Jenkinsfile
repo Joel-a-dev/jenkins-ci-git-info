@@ -14,10 +14,7 @@ def getLatestReleaseTag(){
 pipeline {
   agent any
 
-  
-
   environment {
-
       INIT_GENERATOR_SCRIPT='generate-init-py.sh'
       GIT_COMMIT = getCommitSha()
       BUILD_TIMESTAMP = getBuildTimestamp(GIT_COMMIT)
