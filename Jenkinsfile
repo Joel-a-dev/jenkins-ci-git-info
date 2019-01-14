@@ -24,6 +24,7 @@ pipeline {
   stages {
     stage("Test") {
       steps {
+        sh "echo \$(git rev-list --tags --max-count=1)"
         sh "bash ${INIT_GENERATOR_SCRIPT}"
 
         echo "::::::::::::::::::::::"
