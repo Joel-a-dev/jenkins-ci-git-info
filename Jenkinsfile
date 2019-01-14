@@ -7,7 +7,7 @@ def getBuildTimestamp(COMMIT_SHA){
 }
 
 def getLatestReleaseTag(){
-    return sh(returnStdout: true, script: "git describe --tags \$(git rev-list --tags --max-count=1)").trim()
+    return sh(returnStdout: true, script: "git describe --tags \$(git rev-list --tags --max-count=1)").toString().trim()
 }
 
 pipeline {
@@ -18,7 +18,7 @@ pipeline {
       INIT_GENERATOR_SCRIPT='generate-init-py.sh'
       GIT_COMMIT = getCommitSha()
       BUILD_TIMESTAMP = getBuildTimestamp(GIT_COMMIT)
-      VERSION= getLatestReleaseTag()
+      //VERSION= getLatestReleaseTag()
     }
 
   stages {
