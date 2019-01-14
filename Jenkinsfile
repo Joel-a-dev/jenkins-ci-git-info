@@ -13,7 +13,7 @@ pipeline {
 
         INIT_GENERATOR_SCRIPT='generate-init-py.sh'
         GIT_COMMIT = getCommitSha()
-        GIT_TIMESTAMP = getCommitTimestamp('GIT_COMMIT')
+        GIT_TIMESTAMP = getCommitTimestamp( GIT_COMMIT )
     }
 
   stages {
