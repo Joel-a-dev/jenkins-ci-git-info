@@ -24,7 +24,14 @@ pipeline {
   stages {
     stage("Test") {
       steps {
-        sh "echo \$(git rev-list --tags --max-count=1)"
+      try{
+        sh "\$(git rev-list --tags --max-count=1)"
+      }catch(err){
+        echo "::::::::::::::::::::::"
+        echo "error ocurred during \$(git rev-list --tags --max-count=1)"
+        echo err
+        echo
+      }
         sh "bash ${INIT_GENERATOR_SCRIPT}"
 
         echo "::::::::::::::::::::::"
