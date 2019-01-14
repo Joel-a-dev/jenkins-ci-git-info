@@ -7,13 +7,14 @@ def getBuildTimestamp(COMMIT_SHA){
 }
 
 def getLatestReleaseTag(){
+    sh(script: "git fetch --tags")
     return sh(returnStdout: true, script: "git describe --tags").toString().trim()
 }
 
 pipeline {
   agent any
 
-  sh "git fetch --tags"
+  
 
   environment {
 
@@ -26,6 +27,8 @@ pipeline {
   stages {
     stage("Test") {
       steps {
+        sh "git fetch --tags"
+
         sh "echo \$SHELL"
         //sh "echo \$(git rev-parse HEAD | head -c 7)-\$(date +%Y%m%d%H%M%S)"
         //sh "\$(git rev-list --tags --max-count=1)"
