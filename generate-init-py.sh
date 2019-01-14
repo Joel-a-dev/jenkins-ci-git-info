@@ -8,7 +8,7 @@ import os
 
 __version__ = '0.1.0'
 
-commit_hash = $GIT_COMMIT
+commit_hash = \"$GIT_COMMIT\"
 
-build_timestamp = $GIT_TIMESTAMP
+build_timestamp = \"$GIT_TIMESTAMP\"
 " > api_server/___init___.py
