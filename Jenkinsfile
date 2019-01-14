@@ -17,7 +17,7 @@ pipeline {
   environment {
       INIT_GENERATOR_SCRIPT='generate-init-py.sh'
       GIT_COMMIT_MANUAL = getCommitSha()
-      //BUILD_TIMESTAMP = getBuildTimestamp(GIT_COMMIT)
+      BUILD_TIMESTAMP_MANUAL = getBuildTimestamp(GIT_COMMIT_MANUAL)
       TAGGED_VERSION= getLatestReleaseTag()
     }
 
@@ -30,9 +30,11 @@ pipeline {
         echo "::::::::::::::::::::::"
         echo "GIT COMMIT MANUAL ::: ${GIT_COMMIT_MANUAL}"
         echo "::::::::::::::::::::::"
-        echo "GIT COMMIT MANUAL ::: ${env.GIT_COMMIT}"
+        echo "GIT COMMIT AUTO ::: ${env.GIT_COMMIT}"
         echo "::::::::::::::::::::::"
-        echo "BUILD TIMESTMAP ::: ${env.BUILD_TIMESTAMP}"
+        echo "BUILD TIMESTMAP MANUAL ::: ${env.BUILD_TIMESTAMP_MANUAL}"
+        echo "::::::::::::::::::::::"
+        echo "BUILD TIMESTMAP AUTO ::: ${env.BUILD_TIMESTAMP}"
         echo "::::::::::::::::::::::"
         echo "LATEST TAG VERSION ::: ${TAGGED_VERSION}"
         echo "::::::::::::::::::::::"
