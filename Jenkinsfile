@@ -19,7 +19,6 @@ pipeline {
       GIT_COMMIT = getCommitSha()
       BUILD_TIMESTAMP = getBuildTimestamp(GIT_COMMIT)
       TAGGED_VERSION= getLatestReleaseTag()
-      TEST_ENV= "${env}"
     }
 
   stages {
@@ -27,7 +26,7 @@ pipeline {
       steps {
       
         sh "bash ${INIT_GENERATOR_SCRIPT}"
-        echo "$TEST_ENV"
+        echo sh(returnStdout: true, script: 'env')
         echo "::::::::::::::::::::::"
         echo "GIT COMMIT ::: ${GIT_COMMIT}"
         echo "::::::::::::::::::::::"
