@@ -1,3 +1,11 @@
+def getCommitSha(){
+    return sh(returnStdout: true, script: "git rev-parse HEAD")
+}
+
+def getCommitTimestamp(COMMIT_SHA){
+ return sh(returnStdout: true, script: "git log --date=iso8601 --format='%cd' -1 ${COMMIT_SHA}")
+}
+
 pipeline {
   agent any
 
