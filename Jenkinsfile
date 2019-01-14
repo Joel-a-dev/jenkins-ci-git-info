@@ -7,7 +7,7 @@ def getBuildTimestamp(COMMIT_SHA){
 }
 
 def getLatestReleaseTag(){
-    return sh(returnStdout: true, script: "git describe --abbrev=0 --tags").toString().trim()
+    return sh(returnStdout: true, script: "git describe --tags").toString().trim()
 }
 
 pipeline {
