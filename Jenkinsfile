@@ -20,8 +20,8 @@ pipeline {
         GIT_TIMESTAMP = getCommitTimestamp('GIT_COMMIT')
     }
 
-    options {
-    }
+    //options {
+    //}
     
     stages {
         stage('Test') {
