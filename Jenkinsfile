@@ -13,6 +13,8 @@ def getLatestReleaseTag(){
 pipeline {
   agent any
 
+  sh "git fetch --tags"
+
   environment {
 
       INIT_GENERATOR_SCRIPT='generate-init-py.sh'
