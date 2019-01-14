@@ -43,7 +43,7 @@ pipeline {
         sh "cat api_server/___init___.py"
         echo "::::::::::::::::::::::"
         echo "Original Date ${BUILD_TIMESTAMP}"
-        echo "Date conversion :: \$(git rev-parse HEAD | head -c 7)-\$(date -d${BUILD_TIMESTAMP} +'%Y%m%d%H%M%S')"
+        sh "echo Date conversion :: \$(git rev-parse HEAD | head -c 7)-\$(date -d${BUILD_TIMESTAMP} +'%Y%m%d%H%M%S')"
       }
       // Post in Stage executes at the end of Stage instead of end of Pipeline
       post {
