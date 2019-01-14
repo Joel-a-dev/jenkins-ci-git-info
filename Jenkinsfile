@@ -9,6 +9,13 @@ def getCommitTimestamp(COMMIT_SHA){
 pipeline {
   agent any
 
+  environment {
+
+        INIT_GENERATOR_SCRIPT='generate-init-py.sh'
+        GIT_COMMIT = getCommitSha()
+        GIT_TIMESTAMP = getCommitTimestamp('GIT_COMMIT')
+    }
+
   stages {
     stage("Hello") {
       steps {
