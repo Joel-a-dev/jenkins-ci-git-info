@@ -3,12 +3,12 @@ def getCommitSha(){
 }
 
 def getBuildTimestamp(COMMIT_SHA){
-    return sh(returnStdout: true, script: "git log --date=iso8601 --format='%cd' -1 ${COMMIT_SHA}").trim()
+    return sh(returnStdout: true, script: "date -u +'%Y-%m-%dT%H:%M:%SZ'").trim()
 }
 
 def getLatestReleaseTag(){
     sh(script: "git fetch --tags")
-    return sh(returnStdout: true, script: "git describe --tags").toString().trim()
+    return sh(returnStdout: true, script: "git describe --tags --abbrev=0").toString().trim()
 }
 
 pipeline {
@@ -27,11 +27,6 @@ pipeline {
   stages {
     stage("Test") {
       steps {
-        sh "git fetch --tags"
-
-        sh "echo \$SHELL"
-        //sh "echo \$(git rev-parse HEAD | head -c 7)-\$(date +%Y%m%d%H%M%S)"
-        //sh "\$(git rev-list --tags --max-count=1)"
       
         sh "bash ${INIT_GENERATOR_SCRIPT}"
 
