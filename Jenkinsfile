@@ -1,6 +1,6 @@
-def getCommitSha(){
+/* def getCommitSha(){
     return sh(returnStdout: true, script: "git rev-parse HEAD").trim()
-}
+} */
 
 def getBuildTimestamp(COMMIT_SHA){
     return sh(returnStdout: true, script: "date -u +'%Y-%m-%dT%H:%M:%SZ'").trim()
@@ -16,8 +16,8 @@ pipeline {
 
   environment {
       INIT_GENERATOR_SCRIPT='generate-init-py.sh'
-      GIT_COMMIT_MANUAL = getCommitSha()
-      BUILD_TIMESTAMP_MANUAL = getBuildTimestamp(GIT_COMMIT_MANUAL)
+      //GIT_COMMIT_MANUAL = getCommitSha()
+      BUILD_TIMESTAMP = getBuildTimestamp()
       TAGGED_VERSION= getLatestReleaseTag()
     }
 
@@ -27,14 +27,14 @@ pipeline {
       
         sh "bash ${INIT_GENERATOR_SCRIPT}"
         echo sh(returnStdout: true, script: 'env')
+        //echo "::::::::::::::::::::::"
+        //echo "GIT COMMIT MANUAL ::: ${GIT_COMMIT_MANUAL}"
         echo "::::::::::::::::::::::"
-        echo "GIT COMMIT MANUAL ::: ${GIT_COMMIT_MANUAL}"
+        echo "GIT COMMIT ::: ${env.GIT_COMMIT}"
         echo "::::::::::::::::::::::"
-        echo "GIT COMMIT AUTO ::: ${env.GIT_COMMIT}"
+        echo "GIT COMMIT ::: ${GIT_COMMIT}"
         echo "::::::::::::::::::::::"
-        echo "BUILD TIMESTMAP MANUAL ::: ${env.BUILD_TIMESTAMP_MANUAL}"
-        echo "::::::::::::::::::::::"
-        echo "BUILD TIMESTMAP AUTO ::: ${env.BUILD_TIMESTAMP}"
+        echo "BUILD TIMESTMAP ::: ${BUILD_TIMESTAMP}"
         echo "::::::::::::::::::::::"
         echo "LATEST TAG VERSION ::: ${TAGGED_VERSION}"
         echo "::::::::::::::::::::::"
