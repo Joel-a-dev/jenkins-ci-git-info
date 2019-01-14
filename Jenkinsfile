@@ -7,7 +7,7 @@ def getBuildTimestamp(COMMIT_SHA){
 }
 
 def getLatestReleaseTag(){
-    return sh(returnStdout: true, script: "git describe --tags \$(git rev-list --tags --max-count=1)").toString().trim()
+    return sh(returnStdout: true, script: "git describe --abbrev=0 --tags").toString().trim()
 }
 
 pipeline {
@@ -18,14 +18,14 @@ pipeline {
       INIT_GENERATOR_SCRIPT='generate-init-py.sh'
       GIT_COMMIT = getCommitSha()
       BUILD_TIMESTAMP = getBuildTimestamp(GIT_COMMIT)
-      //VERSION= getLatestReleaseTag()
+      TAGGED_VERSION= getLatestReleaseTag()
     }
 
   stages {
     stage("Test") {
       steps {
-      
-        sh "echo \$(git rev-parse HEAD | head -c 7)-\$(date +%Y%m%d%H%M%S)"
+        sh "echo \$SHELL"
+        //sh "echo \$(git rev-parse HEAD | head -c 7)-\$(date +%Y%m%d%H%M%S)"
         //sh "\$(git rev-list --tags --max-count=1)"
       
         sh "bash ${INIT_GENERATOR_SCRIPT}"
@@ -35,7 +35,7 @@ pipeline {
         echo "::::::::::::::::::::::"
         echo "BUILD TIMESTMAP ::: ${BUILD_TIMESTAMP}"
         echo "::::::::::::::::::::::"
-        echo "LATEST TAG VERSION ::: ${VERSION}"
+        //echo "LATEST TAG VERSION ::: ${VERSION}"
         echo "::::::::::::::::::::::"
         echo "CONTENTS OF GENERATED ___init.py___"
         echo "::::::::::::::::::::::"
