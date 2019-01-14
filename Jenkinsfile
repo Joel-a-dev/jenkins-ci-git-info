@@ -40,7 +40,7 @@ pipeline {
         echo "::::::::::::::::::::::"
         echo "BUILD TIMESTMAP ::: ${BUILD_TIMESTAMP}"
         echo "::::::::::::::::::::::"
-        //echo "LATEST TAG VERSION ::: ${VERSION}"
+        echo "LATEST TAG VERSION ::: ${TAGGED_VERSION}"
         echo "::::::::::::::::::::::"
         echo "CONTENTS OF GENERATED ___init.py___"
         echo "::::::::::::::::::::::"

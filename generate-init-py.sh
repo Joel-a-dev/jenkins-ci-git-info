@@ -6,10 +6,10 @@
 echo "
 import os
 
-__version__ = '$VERSION'
+__version__ = '$TAGGED_VERSION'
 
 commit_hash = '$GIT_COMMIT'
 
-build_timestamp = '$GIT_TIMESTAMP'
+build_timestamp = '$BUILD_TIMESTAMP'
 
 " > api_server/___init___.py
