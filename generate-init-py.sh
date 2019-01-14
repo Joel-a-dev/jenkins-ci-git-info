@@ -8,7 +8,7 @@ import os
 
 __version__ = '0.1.0'
 
-commit_hash = '$GIT_COMMIT'
+commit_hash = '$GIT_COMMIT asd'
 
 build_timestamp = '$GIT_TIMESTAMP'
 
