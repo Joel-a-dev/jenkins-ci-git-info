@@ -2,8 +2,12 @@ def getCommitSha(){
     return sh(returnStdout: true, script: "git rev-parse HEAD").trim()
 }
 
-def getCommitTimestamp(COMMIT_SHA){
- return sh(returnStdout: true, script: "git log --date=iso8601 --format='%cd' -1 ${COMMIT_SHA}").trim()
+def getBuildTimestamp(COMMIT_SHA){
+    return sh(returnStdout: true, script: "git log --date=iso8601 --format='%cd' -1 ${COMMIT_SHA}").trim()
+}
+
+def getLatestReleaseTag(){
+    return sh(returnStdout: true, script: "git describe --tags $(git rev-list --tags --max-count=1)").trim()
 }
 
 pipeline {
@@ -11,23 +15,28 @@ pipeline {
 
   environment {
 
-        INIT_GENERATOR_SCRIPT='generate-init-py.sh'
-        GIT_COMMIT = getCommitSha()
-        GIT_TIMESTAMP = getCommitTimestamp( GIT_COMMIT )
+      INIT_GENERATOR_SCRIPT='generate-init-py.sh'
+      GIT_COMMIT = getCommitSha()
+      BUILD_TIMESTAMP = getBuildTimestamp(GIT_COMMIT)
+      VERSION= getLatestReleaseTag()
     }
 
   stages {
     stage("Test") {
       steps {
-         sh "bash ${INIT_GENERATOR_SCRIPT}"
+        sh "bash ${INIT_GENERATOR_SCRIPT}"
 
         echo "::::::::::::::::::::::"
         echo "GIT COMMIT ::: ${GIT_COMMIT}"
         echo "::::::::::::::::::::::"
-        echo "GIT TIMESTMAP ::: ${GIT_TIMESTAMP}"
+        echo "BUILD TIMESTMAP ::: ${BUILD_TIMESTAMP}"
         echo "::::::::::::::::::::::"
-
+        echo "LATEST TAG VERSION ::: ${VERSION}"
+        echo "::::::::::::::::::::::"
+        echo "CONTENTS OF GENERATED ___init.py___"
+        echo "::::::::::::::::::::::"
         sh "cat api_server/___init___.py"
+        echo "::::::::::::::::::::::"
       }
       // Post in Stage executes at the end of Stage instead of end of Pipeline
       post {
