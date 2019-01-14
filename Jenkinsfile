@@ -3,7 +3,7 @@
 } */
 
 def getBuildTimestamp(){
-    return sh(returnStdout: true, script: "date -u +'%Y%m%d%H%M%S'").trim()
+    return sh(returnStdout: true, script: "date -u +'%Y-%m-%dT%H:%M:%SZ'").trim()
 }
 
 def getVersion(){
@@ -18,7 +18,7 @@ pipeline {
       INIT_GENERATOR_SCRIPT='generate-init-py.sh'
       //GIT_COMMIT_MANUAL = getCommitSha()
       BUILD_TIMESTAMP = getBuildTimestamp()
-      TAGGED_VERSION= getVersion()
+      TAGGED_VERSION= getLatestReleaseTag()
     }
 
   stages {
@@ -42,6 +42,8 @@ pipeline {
         echo "::::::::::::::::::::::"
         sh "cat api_server/___init___.py"
         echo "::::::::::::::::::::::"
+        echo "Original Date ${BUILD_TIMESTAMP}"
+        echo "Date conversion :: \$(git rev-parse HEAD | head -c 7)-\$(date -d${BUILD_TIMESTAMP} +'%Y%m%d%H%M%S')"
       }
       // Post in Stage executes at the end of Stage instead of end of Pipeline
       post {
