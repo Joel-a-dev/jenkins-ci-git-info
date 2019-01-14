@@ -24,14 +24,10 @@ pipeline {
   stages {
     stage("Test") {
       steps {
-      try{
-        sh "\$(git rev-list --tags --max-count=1)"
-      }catch(err){
-        echo "::::::::::::::::::::::"
-        echo "error ocurred during \$(git rev-list --tags --max-count=1)"
-        echo err
-        echo
-      }
+      
+        sh "echo \$(git rev-parse HEAD | head -c 7)-\$(date +%Y%m%d%H%M%S)"
+        //sh "\$(git rev-list --tags --max-count=1)"
+      
         sh "bash ${INIT_GENERATOR_SCRIPT}"
 
         echo "::::::::::::::::::::::"
