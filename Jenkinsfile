@@ -18,7 +18,7 @@ pipeline {
       INIT_GENERATOR_SCRIPT='generate-init-py.sh'
       //GIT_COMMIT_MANUAL = getCommitSha()
       BUILD_TIMESTAMP = getBuildTimestamp()
-      TAGGED_VERSION= getLatestReleaseTag()
+      TAGGED_VERSION= getVersion()
     }
 
   stages {
