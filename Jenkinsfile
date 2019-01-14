@@ -21,16 +21,11 @@ pipeline {
       steps {
          sh "bash ${INIT_GENERATOR_SCRIPT}"
 
-        // Script blocks can run any Groovy script
-        script {
-          String res = env.MAKE_RESULT
-          if (res != null) {
-            echo "Setting build result ${res}"
-            currentBuild.result = res
-          } else {
-            echo "All is well"
-          }
-        }
+        echo "::::::::::::::::::::::"
+        echo "GIT COMMIT ::: ${GIT_COMMIT}"
+        echo "::::::::::::::::::::::"
+        echo "GIT TIMESTMAP ::: ${GIT_TIMESTAMP}"
+        rcho "::::::::::::::::::::::"
       }
       // Post in Stage executes at the end of Stage instead of end of Pipeline
       post {
