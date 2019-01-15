@@ -62,7 +62,7 @@ pipeline {
   post {
     always {
       echo "Pipeline is done"
-      //delete_dir()
+      deleteDir()
     }
   }
 }
