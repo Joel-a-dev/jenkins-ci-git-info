@@ -1,4 +1,4 @@
-def getCommit(){
+/* def getCommit(){
     return sh(returnStdout: true, script: "git rev-parse HEAD").trim()
 }
 
@@ -10,15 +10,12 @@ def getVersion(){
     sh(script: "git fetch --tags")
     return sh(returnStdout: true, script: "git describe --tags --abbrev=0").toString().trim()
 }
-
+ */
 pipeline {
   agent any
 
   environment {
       INIT_GENERATOR_SCRIPT='generate-init-py.sh'
-      GIT_COMMIT = getCommit()
-      BUILD_TIMESTAMP = getBuildTimestamp()
-      TAGGED_VERSION= getVersion()
     }
 
   stages {
@@ -26,10 +23,10 @@ pipeline {
       steps {
       
         sh "bash ${INIT_GENERATOR_SCRIPT}"
-        echo sh(returnStdout: true, script: 'env')
+        //echo sh(returnStdout: true, script: 'env')
         //echo "::::::::::::::::::::::"
         //echo "GIT COMMIT MANUAL ::: ${GIT_COMMIT_MANUAL}"
-        echo "::::::::::::::::::::::"
+        /* echo "::::::::::::::::::::::"
         echo "GIT COMMIT ::: ${env.GIT_COMMIT}"
         echo "::::::::::::::::::::::"
         echo "GIT COMMIT ::: ${GIT_COMMIT}"
@@ -38,13 +35,13 @@ pipeline {
         echo "::::::::::::::::::::::"
         echo "LATEST TAG VERSION ::: ${TAGGED_VERSION}"
         echo "::::::::::::::::::::::"
-        echo "CONTENTS OF GENERATED ___init.py___"
-        echo "::::::::::::::::::::::"
+        echo "CONTENTS OF GENERATED ___init.py___" */
+        echo "::::::::::::::::::::::" 
         sh "cat api_server/___init___.py"
         echo "::::::::::::::::::::::"
-        echo "Original Date ${BUILD_TIMESTAMP}"
+       /*  echo "Original Date ${BUILD_TIMESTAMP}"
         sh "echo Date conversion :: \$(git rev-parse HEAD | head -c 7)-\$(date -d${BUILD_TIMESTAMP} +'%Y%m%d%H%M%S')"
-        sh "echo TEST SMTH \$(echo ${GIT_COMMIT} | head -c 7)-\$(date -d${BUILD_TIMESTAMP} +'%Y%m%d%H%M%S')" 
+        sh "echo TEST SMTH \$(echo ${GIT_COMMIT} | head -c 7)-\$(date -d${BUILD_TIMESTAMP} +'%Y%m%d%H%M%S')"  */
       }
       // Post in Stage executes at the end of Stage instead of end of Pipeline
       post {
