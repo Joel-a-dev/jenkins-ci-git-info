@@ -7,7 +7,7 @@ git fetch --tags
 
 # set variables 
 GIT_COMMIT=$(git rev-parse HEAD)
-GHE_VERSION=$(git describe --tgs --abbrev=0)
+GHE_VERSION=$(git describe --tags --abbrev=0)
 BUILD_TIMESTAMP=$(date +'%Y-%m-%dT%H:%M:%SZ')
 
 # Create ___init___.py file 
