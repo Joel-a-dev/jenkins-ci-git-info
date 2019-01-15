@@ -44,7 +44,7 @@ pipeline {
         echo "::::::::::::::::::::::"
         echo "Original Date ${BUILD_TIMESTAMP}"
         sh "echo Date conversion :: \$(git rev-parse HEAD | head -c 7)-\$(date -d${BUILD_TIMESTAMP} +'%Y%m%d%H%M%S')"
-        sh "echo TEST SMTH      \$(${GIT_COMMIT} | head -c 7)-\$(date -d${BUILD_TIMESTAMP} +'%Y%m%d%H%M%S')" 
+        sh "echo TEST SMTH \$(echo ${GIT_COMMIT} | head -c 7)-\$(date -d${BUILD_TIMESTAMP} +'%Y%m%d%H%M%S')" 
       }
       // Post in Stage executes at the end of Stage instead of end of Pipeline
       post {
