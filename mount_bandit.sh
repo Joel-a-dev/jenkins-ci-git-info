@@ -9,4 +9,4 @@ set -e
 
 docker build -t ${BANDIT_IMAGE}:${BANDIT_TAG} -f ${DOCKERFILE} .
 
-docker run -rm -v ${BANDIT_IMAGE}:${BANDIT_TAG} 
+docker run -v ./shared/:/bandit/app ${BANDIT_IMAGE}:${BANDIT_TAG} 
