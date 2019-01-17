@@ -1,7 +1,5 @@
 FROM python:3.6-slim
 
-ENV user=bandit
-
 WORKDIR /bandit
 
 COPY . /bandit
@@ -9,11 +7,9 @@ COPY . /bandit
 RUN apt-get update && \
     apt-get install -y tree
 RUN apt-get install -y ca-certificates git && pip install bandit 
-RUN mkdir -p /bandit                               && \
-    echo "**** user creation ****"                 && \
-    addgroup -S bandit                             && \
-    adduser -D -S -G bandit bandit                 && \
-    chown -R bandit:bandit /bandit
+RUN mkdir -p /bandit    
 
-CMD ["./shared/run_bandit.sh"]
+COPY . /bandit                         
+
+CMD ["/bandit/shared/run_bandit.sh"]
 
