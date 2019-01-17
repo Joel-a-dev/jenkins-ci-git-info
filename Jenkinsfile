@@ -79,6 +79,10 @@ pipeline {
   post {
     failure {
       echo "Stage FAILED"
+
+      if (fileExists('shared/bandit.report.html')) {
+        echo 'Yes'
+      }
     }
     success {
       echo "Stage was Successful"
