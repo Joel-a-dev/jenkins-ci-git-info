@@ -19,9 +19,6 @@ __version__ = '$GHE_VERSION'
 commit_hash = '$GIT_COMMIT'
 
 build_timestamp = '$BUILD_TIMESTAMP'
-
-assert true
-
 " > api_server/___init___.py
 
 
