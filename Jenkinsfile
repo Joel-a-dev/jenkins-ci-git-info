@@ -66,6 +66,7 @@ pipeline {
     }
       stage("Tests-inside-docker") {
         steps {
+          sh "echo TESTE"
           //sh "bash ${DOCKER_SETUP_SCRIPT}"
         }
       }
