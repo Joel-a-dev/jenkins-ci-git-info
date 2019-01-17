@@ -75,7 +75,7 @@ pipeline {
                 allowMissing: false,
                 alwaysLinkToLastBuild: false,
                 keepAll: true,
-                reportDir: 'results',
+                reportDir: './',
                 reportFiles: 'shared/bandit.report.html',
                 reportName: "Bandit Report"
               ])
