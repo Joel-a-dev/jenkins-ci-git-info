@@ -16,13 +16,13 @@ def getVersion(){
   
   result = sh(returnStatus: true, script: "bandit -r -f html -o bandit.report.html .")
   
+  sh(returnStdout: true,script: "cat bandit.report.html")
   //if(result !=0){
 
       publishHTML (target: [
       allowMissing: false,
       alwaysLinkToLastBuild: false,
       keepAll: true,
-      reportDir: './',
       reportFiles: 'bandit.report.html',
       reportName: "Bandit Report"
     ])
