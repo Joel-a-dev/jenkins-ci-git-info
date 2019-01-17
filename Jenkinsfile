@@ -69,7 +69,7 @@ pipeline {
           
             echo "${return_s}"
 
-            if ("${return_s}" != 0) {
+            if ("${return_s}" != '0') {
               publishHTML (target: [
                 allowMissing: false,
                 alwaysLinkToLastBuild: false,
