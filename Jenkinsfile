@@ -98,8 +98,8 @@ pipeline {
     }
     always {
       echo "Pipeline is done"
-      deleteDir()
-      cleanDocker()
+      //deleteDir()
+      //cleanDocker()
     }
   }
 }
