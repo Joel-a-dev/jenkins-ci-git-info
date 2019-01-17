@@ -63,31 +63,27 @@ pipeline {
         sh "echo Date conversion :: \$(git rev-parse HEAD | head -c 7)-\$(date -d${BUILD_TIMESTAMP} +'%Y%m%d%H%M%S')"
         sh "echo TEST SMTH \$(echo ${GIT_COMMIT} | head -c 7)-\$(date -d${BUILD_TIMESTAMP} +'%Y%m%d%H%M%S')"  */
       }
+    }
       stage("Tests-inside-docker") {
         steps {
           //sh "bash ${DOCKER_SETUP_SCRIPT}"
         }
       }
-      // Post in Stage executes at the end of Stage instead of end of Pipeline
-      post {
-        failure {
-          echo "Stage FAILED"
-        }
-        success {
-          echo "Stage was Successful"
-        }
-        unstable {
-          echo "Stage is Unstable"
-        }
-      }
-    }
   }
-
-  // All Stages and Pipeline can each have their own post section that is executed at different times
+  // Post in Stage executes at the end of Stage instead of end of Pipeline
   post {
+    failure {
+      echo "Stage FAILED"
+    }
+    success {
+      echo "Stage was Successful"
+    }
+    unstable {
+      echo "Stage is Unstable"
+    }
     always {
-      echo "Pipeline is done"
-      deleteDir()
+  echo "Pipeline is done"
+  deleteDir()
     }
   }
 }
