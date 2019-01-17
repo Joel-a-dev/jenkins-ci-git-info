@@ -14,7 +14,7 @@ def getVersion(){
 
  def run_bandit_test(){
   
-  result = sh(returnStatus: true, script: "bandit -r -c ${BANDIT_CONFIG} -f html -o bandit.report.html .")
+  result = sh(returnStatus: true, script: "bandit -r -f html -o bandit.report.html .")
   
   //if(result !=0){
 
