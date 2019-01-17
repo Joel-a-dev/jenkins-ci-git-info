@@ -41,10 +41,7 @@ pipeline {
 
   stages {
     stage("Test") {
-      steps {
-      
-        run_bandit_test()
-
+      steps{
         sh "bash ${INIT_GENERATOR_SCRIPT}"
         //echo sh(returnStdout: true, script: 'env')
         //echo "::::::::::::::::::::::"
@@ -68,7 +65,7 @@ pipeline {
       }
       stage("Tests-inside-docker") {
         steps {
-          sh "bash ${DOCKER_SETUP_SCRIPT}"
+          //sh "bash ${DOCKER_SETUP_SCRIPT}"
         }
       }
       // Post in Stage executes at the end of Stage instead of end of Pipeline
