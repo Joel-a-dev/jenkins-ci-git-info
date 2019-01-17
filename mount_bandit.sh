@@ -4,7 +4,7 @@ BANDIT_IMAGE='bandit'
 BANDIT_TAG='tests'
 DOCKERFILE='bandit.Dockerfile'
 PWD=$(pwd)
-
+chmod +x ./shared/run_bandit.sh
 
 set -e
 
