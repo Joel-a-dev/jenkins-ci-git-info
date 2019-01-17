@@ -7,4 +7,4 @@ REPORT_HTML='banditReport.html'
 REPORT_TXT='banditReport.txt'
 
 echo 'Running Bandit tests'
-bandit -r -f html -o /shared/bandit.report.html .
+bandit -r -f html -o shared/bandit.report.html .
