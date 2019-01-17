@@ -79,7 +79,8 @@ pipeline {
                 reportFiles: 'shared/bandit.report.html',
                 reportName: "Bandit Report"
               ])
-              error "BANDIT TEST FAILED" 
+              
+              sh("cat shared/bandit.report.html")
             }
           }
         }
