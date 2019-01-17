@@ -64,7 +64,9 @@ pipeline {
     }
       stage("Tests-inside-docker") {
         steps {
-          BANDIT_RETURN=sh(returnStatus:true,script:"bash ${DOCKER_SETUP_SCRIPT}")
+
+          BANDIT_RETURN= sh(returnStatus:true, script:"bash ${DOCKER_SETUP_SCRIPT}")
+          
           script{
             if (BANDIT_RETURN != 0) {
               BANDIT_RESULT='FAILED'
