@@ -3,6 +3,7 @@
 BANDIT_IMAGE='bandit'
 BANDIT_TAG='tests'
 DOCKERFILE='bandit.Dockerfile'
+PWD=$(pwd)
 
 
 set -e
