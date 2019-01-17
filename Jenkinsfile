@@ -29,7 +29,7 @@ def getVersion(){
     ])
 
     //error("Failed Bandit Test")
-  //}
+    //}
 }
 pipeline {
   agent any
@@ -66,8 +66,7 @@ pipeline {
     }
       stage("Tests-inside-docker") {
         steps {
-          sh "echo TESTE"
-          //sh "bash ${DOCKER_SETUP_SCRIPT}"
+          sh "bash ${DOCKER_SETUP_SCRIPT}"
         }
       }
   }

@@ -23,4 +23,6 @@ COPY ../* /bandit/app
 
 WORKDIR /bandit
 
-CMD ["/bandit/run_bandit.sh"]
+RUN echo $(ls)
+
+CMD ["/bandit/app/bandit/run_bandit.sh"]
