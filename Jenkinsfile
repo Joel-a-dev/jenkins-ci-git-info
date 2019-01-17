@@ -70,7 +70,6 @@ pipeline {
             echo "${return_s}"
 
             if ("${return_s}" != 0) {
-              BANDIT_RESULT='FAILED'
               publishHTML (target: [
                 allowMissing: false,
                 alwaysLinkToLastBuild: false,
@@ -80,7 +79,7 @@ pipeline {
                 reportName: "Bandit Report"
               ])
               
-              sh("cat shared/bandit.report.html")
+              error "FAILED BANDIT TEST"
             }
           }
         }
