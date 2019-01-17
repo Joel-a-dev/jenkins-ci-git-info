@@ -8,7 +8,7 @@ COPY . /bandit
 
 RUN apt-get update && \
     apt-get install -y tree
-RUN apt-get add --no-cache ca-certificates git && pip install bandit 
+RUN apt-get install --no-cache ca-certificates git && pip install bandit 
 RUN mkdir -p /bandit                               && \
     echo "**** user creation ****"                 && \
     addgroup -S bandit                             && \
