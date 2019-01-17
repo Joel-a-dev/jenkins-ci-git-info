@@ -1,1 +1,1 @@
-assert a=5
+assert true

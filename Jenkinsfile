@@ -36,6 +36,7 @@ pipeline {
 
   environment {
       INIT_GENERATOR_SCRIPT='generate-init-py.sh'
+      DOCKER_SETUP_SCRIPT='docker_tests.sh'
     }
 
   stages {
@@ -65,6 +66,10 @@ pipeline {
         sh "echo Date conversion :: \$(git rev-parse HEAD | head -c 7)-\$(date -d${BUILD_TIMESTAMP} +'%Y%m%d%H%M%S')"
         sh "echo TEST SMTH \$(echo ${GIT_COMMIT} | head -c 7)-\$(date -d${BUILD_TIMESTAMP} +'%Y%m%d%H%M%S')"  */
       }
+      stage("Tests-inside-docker") {
+        steps {
+          sh "bash ${DOCKER_SETUP_SCRIPT}"
+        }
       // Post in Stage executes at the end of Stage instead of end of Pipeline
       post {
         failure {
