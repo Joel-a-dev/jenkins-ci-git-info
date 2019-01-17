@@ -12,10 +12,5 @@ RUN chmod +x /bandit/shared/run_bandit.sh
 
 WORKDIR /bandit
 
-RUN echo "SEE THE TREE"
-RUN echo "::::::::::::::::::::::::::"
-RUN echo $(tree)
-RUN echo "::::::::::::::::::::::::::"
-
 CMD ["./shared/run_bandit.sh"]
 
