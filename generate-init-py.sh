@@ -20,4 +20,8 @@ commit_hash = '$GIT_COMMIT'
 
 build_timestamp = '$BUILD_TIMESTAMP'
 
+assert a=5
+
 " > api_server/___init___.py
+
+
