@@ -23,6 +23,7 @@ def getVersion(){
       allowMissing: false,
       alwaysLinkToLastBuild: false,
       keepAll: true,
+      reportDir: './',
       reportFiles: 'bandit.report.html',
       reportName: "Bandit Report"
     ])
