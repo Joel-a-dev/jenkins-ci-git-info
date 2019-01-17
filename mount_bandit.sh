@@ -2,11 +2,11 @@
 
 BANDIT_IMAGE='bandit'
 BANDIT_TAG='tests'
-DOCKERFILE_DIR='bandit'
+DOCKERFILE='bandit.Dockerfile'
 
 
 set -e
 
-docker build -t ${BANDIT_IMAGE}:${BANDIT_TAG} ${DOCKERFILE_DIR}
+docker build -t ${BANDIT_IMAGE}:${BANDIT_TAG} -f ${DOCKERFILE} .
 
 docker run -rm -v ${BANDIT_IMAGE}:${BANDIT_TAG} 

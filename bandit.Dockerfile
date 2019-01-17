@@ -19,7 +19,7 @@ RUN echo "**** install runtime packages ****"      && \
 
 USER ${user}
 
-COPY ../* /bandit/app
+COPY ./ /bandit/app
 
 WORKDIR /bandit
 
