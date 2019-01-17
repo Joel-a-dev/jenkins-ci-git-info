@@ -36,7 +36,7 @@ pipeline {
 
   environment {
       INIT_GENERATOR_SCRIPT='generate-init-py.sh'
-      DOCKER_SETUP_SCRIPT='bandit/mount_bandit.sh'
+      DOCKER_SETUP_SCRIPT='mount_bandit.sh'
     }
 
   stages {
