@@ -79,7 +79,7 @@ pipeline {
                 reportFiles: 'shared/bandit.report.html',
                 reportName: "Bandit Report"
               ])
-              error("BANDIT TEST FAILED")
+              error "BANDIT TEST FAILED" 
             }
           }
         }
