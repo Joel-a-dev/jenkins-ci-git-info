@@ -56,7 +56,7 @@ pipeline {
         echo "::::::::::::::::::::::"
         echo "BUILD TIMESTMAP ::: ${BUILD_TIMESTAMP}"
         echo "::::::::::::::::::::::"
-        echo "LATEST TAG VERSION ::: ${TAGGED_VERSION}"
+        echo "LAbandit -r -f html -o bandit.report.html .TEST TAG VERSION ::: ${TAGGED_VERSION}"
         echo "::::::::::::::::::::::"
         echo "CONTENTS OF GENERATED ___init.py___" */
         /* echo "::::::::::::::::::::::" 
@@ -70,6 +70,7 @@ pipeline {
         steps {
           sh "bash ${DOCKER_SETUP_SCRIPT}"
         }
+      }
       // Post in Stage executes at the end of Stage instead of end of Pipeline
       post {
         failure {
