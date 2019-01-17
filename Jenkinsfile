@@ -19,14 +19,7 @@ def getVersion(){
   sh(returnStdout: true,script: "cat bandit.report.html")
   //if(result !=0){
 
-      publishHTML (target: [
-      allowMissing: false,
-      alwaysLinkToLastBuild: false,
-      keepAll: true,
-      reportDir: './',
-      reportFiles: 'bandit.report.html',
-      reportName: "Bandit Report"
-    ])
+      
 
     //error("Failed Bandit Test")
     //}
@@ -72,6 +65,19 @@ pipeline {
       stage("Tests-inside-docker") {
         steps {
           sh "bash ${DOCKER_SETUP_SCRIPT}"
+
+          if (fileExists('shared/bandit.report.html')) {
+            BANDIT_RESULT='FAILED'
+            publishHTML (target: [
+              allowMissing: false,
+              alwaysLinkToLastBuild: false,
+              keepAll: true,
+              reportDir: 'results',
+              reportFiles: 'shared/bandit.report.html',
+              reportName: "Bandit Report"
+            ])
+          }
+
         }
       }
   }
@@ -79,10 +85,6 @@ pipeline {
   post {
     failure {
       echo "Stage FAILED"
-
-      if (fileExists('shared/bandit.report.html')) {
-        echo 'Yes'
-      }
     }
     success {
       echo "Stage was Successful"
