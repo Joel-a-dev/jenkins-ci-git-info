@@ -30,7 +30,12 @@ def getVersion(){
 
     //error("Failed Bandit Test")
     //}
-}
+  }
+
+  def cleanDocker(){
+    sh "echo WIP"
+  }
+
 pipeline {
   agent any
 
@@ -82,8 +87,9 @@ pipeline {
       echo "Stage is Unstable"
     }
     always {
-  echo "Pipeline is done"
-  deleteDir()
+      echo "Pipeline is done"
+      deleteDir()
+      cleanDocker()
     }
   }
 }
