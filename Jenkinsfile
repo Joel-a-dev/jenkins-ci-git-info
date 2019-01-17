@@ -64,12 +64,11 @@ pipeline {
     }
       stage("Tests-inside-docker") {
         steps {
-
-          def return_s= sh( returnStatus:true, script:"bash ${DOCKER_SETUP_SCRIPT}")
-          
-          echo "${return_s}"
-
           script{
+            return_s= sh( returnStatus:true, script:"bash ${DOCKER_SETUP_SCRIPT}")
+          
+            echo "${return_s}"
+
             if ("${return_s}" != 0) {
               BANDIT_RESULT='FAILED'
               publishHTML (target: [
