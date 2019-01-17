@@ -64,9 +64,9 @@ pipeline {
     }
       stage("Tests-inside-docker") {
         steps {
-          sh "bash ${DOCKER_SETUP_SCRIPT}"
+          BANDIT_RETURN=sh(returnStatus:true,script:"bash ${DOCKER_SETUP_SCRIPT}")
           script{
-            if (fileExists('shared/bandit.report.html')) {
+            if (BANDIT_RETURN != 0) {
               BANDIT_RESULT='FAILED'
               publishHTML (target: [
                 allowMissing: false,
@@ -76,6 +76,7 @@ pipeline {
                 reportFiles: 'shared/bandit.report.html',
                 reportName: "Bandit Report"
               ])
+              error("BANDIT TEST FAILED")
             }
           }
         }
