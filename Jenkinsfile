@@ -65,19 +65,19 @@ pipeline {
       stage("Tests-inside-docker") {
         steps {
           sh "bash ${DOCKER_SETUP_SCRIPT}"
-
-          if (fileExists('shared/bandit.report.html')) {
-            BANDIT_RESULT='FAILED'
-            publishHTML (target: [
-              allowMissing: false,
-              alwaysLinkToLastBuild: false,
-              keepAll: true,
-              reportDir: 'results',
-              reportFiles: 'shared/bandit.report.html',
-              reportName: "Bandit Report"
-            ])
+          script{
+            if (fileExists('shared/bandit.report.html')) {
+              BANDIT_RESULT='FAILED'
+              publishHTML (target: [
+                allowMissing: false,
+                alwaysLinkToLastBuild: false,
+                keepAll: true,
+                reportDir: 'results',
+                reportFiles: 'shared/bandit.report.html',
+                reportName: "Bandit Report"
+              ])
+            }
           }
-
         }
       }
   }
