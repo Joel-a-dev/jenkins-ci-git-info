@@ -25,4 +25,4 @@ WORKDIR /bandit
 
 RUN echo $(ls)
 
-CMD ["/bandit/app/bandit/run_bandit.sh"]
+CMD ["/bandit/app/run_bandit.sh"]
