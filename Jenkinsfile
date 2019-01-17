@@ -70,7 +70,7 @@ pipeline {
           echo "${return_s}"
 
           script{
-            if (BANDIT_RETURN != 0) {
+            if ("${return_s}" != 0) {
               BANDIT_RESULT='FAILED'
               publishHTML (target: [
                 allowMissing: false,
