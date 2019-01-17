@@ -11,6 +11,25 @@ def getVersion(){
     return sh(returnStdout: true, script: "git describe --tags --abbrev=0").toString().trim()
 }
  */
+
+ def run_bandit_test(){
+  
+  result = sh(returnStatus: true, script: "bandit -r -c ${BANDIT_CONFIG} -f html -o bandit.report.html .")
+  
+  //if(result !=0){
+
+      publishHTML (target: [
+      allowMissing: false,
+      alwaysLinkToLastBuild: false,
+      keepAll: true,
+      reportDir: './',
+      reportFiles: 'bandit.report.html',
+      reportName: "Bandit Report"
+    ])
+
+    //error("Failed Bandit Test")
+  //}
+}
 pipeline {
   agent any
 
@@ -22,6 +41,8 @@ pipeline {
     stage("Test") {
       steps {
       
+        run_bandit_test()
+
         sh "bash ${INIT_GENERATOR_SCRIPT}"
         //echo sh(returnStdout: true, script: 'env')
         //echo "::::::::::::::::::::::"
@@ -36,9 +57,9 @@ pipeline {
         echo "LATEST TAG VERSION ::: ${TAGGED_VERSION}"
         echo "::::::::::::::::::::::"
         echo "CONTENTS OF GENERATED ___init.py___" */
-        echo "::::::::::::::::::::::" 
+        /* echo "::::::::::::::::::::::" 
         sh "cat api_server/___init___.py"
-        echo "::::::::::::::::::::::"
+        echo "::::::::::::::::::::::" */
        /*  echo "Original Date ${BUILD_TIMESTAMP}"
         sh "echo Date conversion :: \$(git rev-parse HEAD | head -c 7)-\$(date -d${BUILD_TIMESTAMP} +'%Y%m%d%H%M%S')"
         sh "echo TEST SMTH \$(echo ${GIT_COMMIT} | head -c 7)-\$(date -d${BUILD_TIMESTAMP} +'%Y%m%d%H%M%S')"  */
