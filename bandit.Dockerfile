@@ -17,12 +17,14 @@ RUN echo "**** install runtime packages ****"      && \
     adduser -D -S -h /src -G bandit bandit         && \
     chown -R bandit:bandit /bandit
 
+RUN apt-get install -y tree
+
 USER ${user}
 
 COPY ./ /bandit/app
 
 WORKDIR /bandit
 
-RUN echo $(ls)
+RUN echo $(tree)
 
 CMD ["/bandit/app/run_bandit.sh"]
