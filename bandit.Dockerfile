@@ -8,7 +8,14 @@ RUN mkdir -p /bandit                               && \
 
 COPY . /bandit
 
+RUN chmod 666 /bandit/shared/run_bandit.sh
+
 WORKDIR /bandit
 
-CMD ["./shared/run_bandit.sh"]
+RUN echo "SEE THE TREE"
+RUN echo "::::::::::::::::::::::::::"
+RUN echo $(tree)
+RUN echo "::::::::::::::::::::::::::"
+
+CMD ["shared/run_bandit.sh"]
 
